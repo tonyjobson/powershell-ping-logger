@@ -2,7 +2,7 @@
 $hostname = $env:computername 
 
 #let's get a time stamp we like
-$YEARSTART = get-date -format yyyy-MM-dd;
+$YEARSTART = get-date -format yyyyMMdd;
 $TIMESTART = get-date -format HHmmss
 
 
