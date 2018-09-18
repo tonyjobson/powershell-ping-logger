@@ -33,6 +33,8 @@ while($true)
 
         if ($res-eq $null) 
             {
+                #If we get here it means we had a time out or failure on the ping.
+                
                 #let's work out how long since a last sucsessful ping.
                 $TimeSpan = [DateTime](get-date) - [DateTime]$LastSuccessful
 
@@ -41,7 +43,7 @@ while($true)
                 #let's give the user something to see for the failures.
                 $TIMENOW = get-date -format HH:mm.ss
                 Write-host "$TIMENOW : Last Ping Timed out. Logged to file. $TotalSeconds Since last sucsess"
-    
+    gi
                 #log to a file the failure.
                 $YEAR = get-date -format yyyy-MM-dd;
                 $TIME = get-date -format HH:mm:ss
