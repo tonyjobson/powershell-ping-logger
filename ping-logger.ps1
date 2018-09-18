@@ -1,4 +1,5 @@
-﻿# This power shell script is designed to be used to track the latency between a server and a specific end point over time.
+﻿# https://github.com/tonyjobson/ping-logger
+# This power shell script is designed to be used to track the latency between a server and a specific end point over time.
 # this is formatted for easy graphing in Excel. 
 # the typical use case is to track intermittent network issues to help track down saturated switch ports or firewall capacity issues.
 # Resolution is roughly 1 second rate. This can lead to large files if the script is left running for several days. 
