@@ -43,7 +43,8 @@ while($true)
                 #let's give the user something to see for the failures.
                 $TIMENOW = get-date -format HH:mm.ss
                 Write-host "$TIMENOW : Last Ping Timed out. Logged to file. $TotalSeconds Since last sucsess"
-    gi
+
+ 
                 #log to a file the failure.
                 $YEAR = get-date -format yyyy-MM-dd;
                 $TIME = get-date -format HH:mm:ss
