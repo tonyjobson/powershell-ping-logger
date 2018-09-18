@@ -1,4 +1,33 @@
-﻿#setup a few file name variables
+﻿# This power shell script is designed to be used to track the latency between a server and a specific end point over time.
+# this is formatted for easy graphing in Excel. 
+# the typical use case is to track intermittent network issues to help track down saturated switch ports or firewall capacity issues.
+# Resolution is roughly 1 second rate. This can lead to large files if the script is left running for several days. 
+# Approximatly 2MB of log file growth per day should be expected.
+# I recommend enabling NTFS compression on the folder it's run from to prevent unecassary file growth.
+# Ping timeouts will be recorded as 4001ms which is easy to spot in a graph as a dropped packet (time out)
+# The filename output is formatted so the same script can be quickly started on multiple servers and all log files imported to the same folder for analysis without filename conflict. 
+
+
+<#
+CSV format:
+
+Year,Time,ResponseTime
+2018-09-18,11:17:00,6
+2018-09-18,11:17:01,8
+2018-09-18,11:17:02,11
+2018-09-18,11:17:03,7
+2018-09-18,11:17:04,11
+2018-09-18,11:17:21,10
+2018-09-18,11:17:26,4001
+2018-09-18,11:17:27,5
+2018-09-18,11:17:28,5
+#>
+
+
+
+
+
+#setup a few file name variables
 $hostname = $env:computername 
 
 #let's get a time stamp we like for the file name.
