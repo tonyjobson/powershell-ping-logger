@@ -2,7 +2,7 @@
 $hostname = $env:computername 
 
 #let's get a time stamp we like
-$YEARSTART = get-date -format yyyyMMdd;
+$YEARSTART = get-date -format yyyy-MM-dd;
 $TIMESTART = get-date -format HHmmss
 
 
@@ -43,7 +43,7 @@ while($true)
                 Write-host "$TIMENOW : Last Ping Timed out. Logged to file. $TotalSeconds Since last sucsess"
     
                 #log to a file the failure.
-                $YEAR = get-date -format yyyyMMdd;
+                $YEAR = get-date -format yyyy-MM-dd;
                 $TIME = get-date -format HH:mm:ss
                 add-content ./$logname "$YEAR,$TIME,4001";
 
@@ -65,7 +65,7 @@ while($true)
 
 
                  #log time to a file.
-                $YEAR = get-date -format yyyyMMdd;
+                $YEAR = get-date -format yyyy-MM-dd;
                 $TIME = get-date -format HH:mm:ss;
                  add-content ./$logname "$YEAR,$TIME,$pingtime";
 
