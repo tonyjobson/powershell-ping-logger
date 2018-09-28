@@ -12,16 +12,16 @@
 <#
 CSV format:
 
-Year,Time,ResponseTime
-2018-09-18,11:17:00,6
-2018-09-18,11:17:01,8
-2018-09-18,11:17:02,11
-2018-09-18,11:17:03,7
-2018-09-18,11:17:04,11
-2018-09-18,11:17:21,10
-2018-09-18,11:17:26,4001
-2018-09-18,11:17:27,5
-2018-09-18,11:17:28,5
+Source,Destination,Year,Time,ResponseTime
+hostnmame,8.8.8.8,2018/09/18,11:17:00,6
+hostnmame,8.8.8.8,2018/09/18,11:17:01,8
+hostnmame,8.8.8.8,2018/09/18,11:17:02,11
+hostnmame,8.8.8.8,2018/09/18,11:17:03,7
+hostnmame,8.8.8.8,2018/09/18,11:17:04,11
+hostnmame,8.8.8.8,2018/09/18,11:17:21,10
+hostnmame,8.8.8.8,2018/09/18,11:17:26,4001
+hostnmame,8.8.8.8,2018/09/18,11:17:27,5
+hostnmame,8.8.8.8,2018/09/18,11:17:28,5
 #>
 
 
@@ -32,7 +32,7 @@ Year,Time,ResponseTime
 $hostname = $env:computername 
 
 #let's get a time stamp we like for the file name.
-$YEARSTART = get-date -format yyyy.MM.dd;
+$YEARSTART = get-date -format yyyy-MM-dd;
 $TIMESTART = get-date -format HH.mm.ss
 
 
@@ -49,7 +49,7 @@ if ($logname -eq ''){$LogName = $DefaulLogName}
 
 
 #let's setup the csv file
-add-content ./$logname "Year,Time,ResponseTime";
+add-content ./$logname "Source,Destination,Year,Time,ResponseTime";
 
 
 #pretend start time is successful ping to calculate seconds since sucsessful response in case we never get a response.
@@ -78,7 +78,7 @@ while($true)
                 #log to a file the failure.
                 $YEAR = get-date -format yyyy-MM-dd;
                 $TIME = get-date -format HH:mm:ss
-                add-content ./$logname "$YEAR,$TIME,4001";
+                add-content ./$logname "$hostname,$destination,$YEAR,$TIME,4001";
 
                 #incase the nic goes down we need a delay here too. means that our highest resolution of outage is 5 seconds.
                 start-sleep -s 1
@@ -100,7 +100,7 @@ while($true)
                  #log time to a file.
                 $YEAR = get-date -format yyyy-MM-dd;
                 $TIME = get-date -format HH:mm:ss;
-                 add-content ./$logname "$YEAR,$TIME,$pingtime";
+                 add-content ./$logname "$hostname,$destination,$YEAR,$TIME,$pingtime";
 
                 #pause for 1 second to prevent low latency loop being too quick.
                 start-sleep -s 1
